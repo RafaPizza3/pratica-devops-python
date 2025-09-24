@@ -24,7 +24,12 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Versioning
-        uses: Soumeh/Auto-Versioning@main
+        uses: anothrNick/github-tag-action@v2
+        id: tag
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag_prefix: ''
+          release_branches: main
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
@@ -34,4 +39,6 @@ jobs:
           
           push: true
           
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/pratica-devops-python:latest, ${{ secrets.DOCKERHUB_USERNAME }}/pratica-devops-python:${{ github.sha }}
+          tags: | 
+            ${{ secrets.DOCKERHUB_USERNAME }}/pratica-devops-python:latest 
+            ${{ secrets.DOCKERHUB_USERNAME }}/pratica-devops-python:${{ steps.tag.outputs.new_tag }}
