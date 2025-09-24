@@ -27,7 +27,7 @@ jobs:
         uses: anothrNick/github-tag-action@v1
         id: tag
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ github.token }}
           tag_prefix: ''
           release_branches: main
       
