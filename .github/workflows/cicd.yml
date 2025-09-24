@@ -28,6 +28,7 @@ jobs:
         id: tag
         with:
           github_token: ${{ secrets.PAT_TOKEN }}
+          init_version: 1.0.0
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
