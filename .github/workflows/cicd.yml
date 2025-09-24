@@ -29,6 +29,7 @@ jobs:
         with:
           github_token: ${{ secrets.PAT_TOKEN }}
           init_version: 1.0.0
+          force-increment: true
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
